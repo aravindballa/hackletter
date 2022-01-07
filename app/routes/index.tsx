@@ -10,6 +10,9 @@ export const loader = async () => {
   return feed;
 };
 
+// for the Link to prefetch
+export const handle = { hydrate: true };
+
 export default function Index() {
   const feed = useLoaderData<Feed>();
   const totalPosts = feed.posts.length;
