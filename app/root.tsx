@@ -21,12 +21,21 @@ export function links() {
     {
       rel: "preload",
       href: "/fonts/Poppins-Bold.ttf",
+      type: "font/ttf",
       as: "font",
       crossOrigin: "anonymous",
     },
     {
       rel: "preload",
       href: "/fonts/Poppins-Regular.ttf",
+      type: "font/ttf",
+      as: "font",
+      crossOrigin: "anonymous",
+    },
+    {
+      rel: "preload",
+      href: "/fonts/WorkSans-VariableFont_wght.ttf",
+      type: "font/ttf",
       as: "font",
       crossOrigin: "anonymous",
     },
