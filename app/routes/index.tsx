@@ -18,7 +18,7 @@ export default function Index() {
   const totalPosts = feed.posts.length;
   return (
     <>
-      <div className="prose mx-auto mt-12">
+      <div className="prose prose-lg mx-auto mt-12 dark:prose-invert">
         <h1 className="text-center">{feed.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: feed.description }} />
         <h2>Checkout the Archive 👇</h2>

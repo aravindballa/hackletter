@@ -42,7 +42,7 @@
   }
 
   body {
-    @apply bg-background text-foreground transition-colors duration-75;
+    @apply bg-white dark:bg-gray-900;
   }
 
   h1,
