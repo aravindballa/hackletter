@@ -17,7 +17,6 @@ export const meta: MetaFunction = () => {
 
 export function links() {
   return [
-    { rel: "stylesheet", href: styles },
     {
       rel: "preload",
       href: "/fonts/Poppins-Bold.ttf",
@@ -39,6 +38,7 @@ export function links() {
       as: "font",
       crossOrigin: "anonymous",
     },
+    { rel: "stylesheet", href: styles },
   ];
 }
 
