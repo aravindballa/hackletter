@@ -1,4 +1,4 @@
-import { useLoaderData, Link } from "remix";
+import { useLoaderData, Link, HeadersFunction } from "remix";
 import { format } from "date-fns";
 
 import { hackletterPosts } from "../../lib";
@@ -8,6 +8,12 @@ import Footer from "~/components/Footer";
 export const loader = async () => {
   const feed = await hackletterPosts();
   return feed;
+};
+
+export const headers: HeadersFunction = () => {
+  return {
+    "Cache-Control": `private max-age=300`,
+  };
 };
 
 // for the Link to prefetch
