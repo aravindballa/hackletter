@@ -34,7 +34,7 @@ export default function Index() {
   const { id, post } = useLoaderData<{ id: string; post: NewsletterPost }>();
   return (
     <>
-      <div className="prose prose-lg mx-auto mt-12 dark:prose-invert">
+      <div className="prose prose-lg mx-auto mt-12 dark:prose-invert px-4">
         <div className="">
           <Link to="/">👈 Back to home</Link>
         </div>
