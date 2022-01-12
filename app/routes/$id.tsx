@@ -20,7 +20,7 @@ export const loader = async ({ params }: { params: Params }) => {
     { post, id: params.id },
     {
       headers: {
-        "Cache-Control": `max-age=86400 s-maxage=${7 * 24 * 60 * 60}`,
+        "Cache-Control": `max-age=86400, s-maxage=${7 * 24 * 60 * 60}`,
       },
     }
   );
