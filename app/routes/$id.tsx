@@ -1,4 +1,4 @@
-import { Link, useLoaderData } from "remix";
+import { Link, useLoaderData, json, HeadersFunction } from "remix";
 import { format } from "date-fns";
 
 import { hackletterPosts } from "../../lib";
@@ -16,7 +16,14 @@ export const loader = async ({ params }: { params: Params }) => {
   const totalPosts = feed?.posts.length;
   const post = feed?.posts[totalPosts - parseInt(params.id)];
 
-  return { post, id: params.id };
+  return json(
+    { post, id: params.id },
+    { headers: { "Cache-Control": `max-age=0 s-maxage=${7 * 24 * 60}` } }
+  );
+};
+
+export const headers: HeadersFunction = ({ loaderHeaders }) => {
+  return loaderHeaders;
 };
 
 export default function Index() {
