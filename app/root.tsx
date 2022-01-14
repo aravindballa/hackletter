@@ -1,21 +1,26 @@
 import {
   Links,
+  LinksFunction,
   LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
   useMatches,
+  useTransition,
 } from "remix";
 import type { MetaFunction } from "remix";
+import Nprogress from "nprogress";
+import nprogressStyles from "nprogress/nprogress.css";
 
 import styles from "./tailwind.css";
+import { useEffect } from "react";
 
 export const meta: MetaFunction = () => {
   return { title: "Hackletter | Weekly newsletter by Aravind Balla" };
 };
 
-export function links() {
+export const links: LinksFunction = () => {
   return [
     {
       rel: "preload",
@@ -38,13 +43,23 @@ export function links() {
       as: "font",
       crossOrigin: "anonymous",
     },
+    { rel: "stylesheet", href: nprogressStyles },
     { rel: "stylesheet", href: styles },
   ];
-}
+};
 
 export default function App() {
   const matches = useMatches();
+  const transition = useTransition();
   const includeScripts = matches.some((match) => match.handle?.hydrate);
+
+  useEffect(() => {
+    if (transition.state === "loading" || transition.state === "submitting") {
+      Nprogress.start();
+    } else {
+      Nprogress.done();
+    }
+  }, [transition.state]);
 
   return (
     <html lang="en">

@@ -64,3 +64,16 @@
     @apply break-all;
   }
 }
+
+#nprogress .bar {
+  background: var(--purple) !important;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px var(--purple), 0 0 5px var(--purple);
+}
+
+#nprogress .spinner-icon {
+  border-top-color: var(--purple);
+  border-left-color: var(--purple);
+}
