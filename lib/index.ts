@@ -5,7 +5,7 @@ import { Feed } from "../types";
 
 const HACKLETTER_RSS = "https://buttondown.email/aravindballa/rss";
 
-export const hackletterPosts = async (): Promise<Feed | null> => {
+const getHackletterPostsFromRSS = async (): Promise<Feed | null> => {
   const rssContent = await (await fetch(HACKLETTER_RSS)).text();
   const feed = await parseFeed(rssContent);
 
@@ -22,4 +22,31 @@ export const hackletterPosts = async (): Promise<Feed | null> => {
       date: item.pubDate ? new Date(item.pubDate).toDateString() : undefined,
     })),
   };
+};
+
+const saveFeedInKV = async (feed: Feed | null) => {
+  // @ts-ignore
+  return __LOADER_CACHE.put(
+    `rss-feed`,
+    JSON.stringify({
+      ts: new Date().toISOString(),
+      feed,
+    })
+  );
+};
+
+export const hackletterPosts = async (): Promise<Feed | null> => {
+  // @ts-ignore
+  const cache: string = await __LOADER_CACHE.get(`rss-feed`);
+
+  if (cache) {
+    const { feed, ts }: { feed: Feed; ts: string } = JSON.parse(cache);
+    console.log(`Feed ts: ${ts}`);
+    return feed;
+  }
+
+  const feed = await getHackletterPostsFromRSS();
+  await saveFeedInKV(feed);
+
+  return feed;
 };

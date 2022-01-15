@@ -16,7 +16,6 @@ export const headers: HeadersFunction = () => {
   };
 };
 
-// for the Link to prefetch
 export const handle = { hydrate: true };
 
 export default function Index() {

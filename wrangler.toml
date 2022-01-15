@@ -6,6 +6,10 @@ account_id = ""
 route = ""
 workers_dev = true
 
+kv_namespaces = [ 
+  { binding = "__LOADER_CACHE", id = "b588cafdd45041989fb623b5a6377758" }
+]
+
 [site]
 bucket = "./public"
 entry-point = "."
