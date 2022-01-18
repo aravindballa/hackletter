@@ -49,9 +49,7 @@ export const links: LinksFunction = () => {
 };
 
 export default function App() {
-  const matches = useMatches();
   const transition = useTransition();
-  const includeScripts = matches.some((match) => match.handle?.hydrate);
 
   useEffect(() => {
     if (transition.state === "loading" || transition.state === "submitting") {
@@ -72,7 +70,7 @@ export default function App() {
       <body>
         <Outlet />
         <ScrollRestoration />
-        {includeScripts ? <Scripts /> : null}
+        <Scripts />
         {process.env.NODE_ENV === "development" && <LiveReload />}
       </body>
     </html>

@@ -2,67 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  @font-face {
-    font-family: "Work Sans";
-    font-display: optional;
-    src: url("/fonts/WorkSans-VariableFont_wght.ttf") format("truetype");
-  }
+@font-face {
+  font-family: "Work Sans";
+  font-display: optional;
+  src: url("/fonts/WorkSans-VariableFont_wght.ttf") format("truetype");
+}
 
-  @font-face {
-    font-family: "Poppins";
-    font-weight: 400;
-    font-display: optional;
-    src: url("/fonts/Poppins-Regular.ttf") format("truetype");
-  }
-  @font-face {
-    font-family: "Poppins";
-    font-weight: bold;
-    font-display: optional;
-    src: url("/fonts/Poppins-Bold.ttf") format("truetype");
-  }
+@font-face {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-display: optional;
+  src: url("/fonts/Poppins-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Poppins";
+  font-weight: bold;
+  font-display: optional;
+  src: url("/fonts/Poppins-Bold.ttf") format("truetype");
+}
 
-  :root {
-    --red: #e94040;
-    --blue: #67bbef;
-    --green: #67d3be;
-    --purple: #8a65aa;
-    --yellow: #f5bf32;
-    --palered: #eb697f;
-  }
-  body.dark {
-    --background: 21, 21, 21; /* #151515 */
-    --foreground: 215, 215, 215; /* #d7d7d7 */
-    --headings: 255, 255, 255; /* #fff */
-  }
-  body.light {
-    --background: 255, 255, 255; /* #fff */
-    --foreground: 21, 21, 21; /* #151515 */
-    --headings: 0, 0, 0; /* #000 */
-  }
+:root {
+  --red: #e94040;
+  --blue: #67bbef;
+  --green: #67d3be;
+  --purple: #8a65aa;
+  --yellow: #f5bf32;
+  --palered: #eb697f;
+}
+body.dark {
+  --background: 21, 21, 21; /* #151515 */
+  --foreground: 215, 215, 215; /* #d7d7d7 */
+  --headings: 255, 255, 255; /* #fff */
+}
+body.light {
+  --background: 255, 255, 255; /* #fff */
+  --foreground: 21, 21, 21; /* #151515 */
+  --headings: 0, 0, 0; /* #000 */
+}
 
-  body {
-    @apply bg-white dark:bg-gray-900;
-  }
+body {
+  @apply bg-white dark:bg-gray-900;
+}
 
-  h1,
-  h2,
-  h3,
-  h4 {
-    @apply font-head;
-  }
+h1,
+h2,
+h3,
+h4 {
+  @apply font-head;
+}
 
-  .no-margin {
-    margin: 0 !important;
-  }
+.no-margin {
+  margin: 0 !important;
+}
 
-  .prose > pre {
-    @apply relative max-w-[30ch] md:max-w-full mx-auto;
-  }
+.prose > pre {
+  @apply relative max-w-[30ch] md:max-w-full mx-auto;
+}
 
-  .prose a {
-    @apply break-all;
-  }
+.prose a {
+  @apply break-all;
 }
 
 #nprogress .bar {

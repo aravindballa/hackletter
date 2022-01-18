@@ -31,8 +31,6 @@ export const headers: HeadersFunction = () => {
   };
 };
 
-export const handle = { hydrate: true };
-
 export default function Index() {
   const { feed } = useLoaderData<{
     feed: Feed;
