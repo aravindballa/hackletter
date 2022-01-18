@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import { hackletterPosts } from "../../lib";
 import { NewsletterPost } from "../../types";
 import Footer from "../components/Footer";
+import Subscribe from "~/components/Subscribe";
 
 type Params = {
   id: string;
@@ -47,6 +48,7 @@ export default function Index() {
           </p>
         )}
         <div dangerouslySetInnerHTML={{ __html: post.description }} />
+        <Subscribe />
       </div>
       <Footer />
     </>

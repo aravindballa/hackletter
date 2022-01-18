@@ -1,13 +1,28 @@
-import { useLoaderData, Link, HeadersFunction } from "remix";
-import { format } from "date-fns";
+import {
+  useLoaderData,
+  Link,
+  HeadersFunction,
+  LoaderFunction,
+  json,
+} from "remix";
+import { format, differenceInDays, nextTuesday } from "date-fns";
 
 import { hackletterPosts } from "../../lib";
 import { Feed } from "../../types";
 import Footer from "~/components/Footer";
+import Subscribe from "~/components/Subscribe";
 
-export const loader = async () => {
+export const loader: LoaderFunction = async ({ request }) => {
   const feed = await hackletterPosts();
-  return feed;
+  const query = new URLSearchParams(request.url.split("?")[1]);
+  const daysUntilNextIssue =
+    differenceInDays(nextTuesday(new Date()), new Date()) % 7;
+
+  return json({
+    feed,
+    isConfirmed: query.has("confirmed"),
+    daysUntilNextIssue,
+  });
 };
 
 export const headers: HeadersFunction = () => {
@@ -16,17 +31,27 @@ export const headers: HeadersFunction = () => {
   };
 };
 
-// for the Link to prefetch
 export const handle = { hydrate: true };
 
 export default function Index() {
-  const feed = useLoaderData<Feed>();
+  const { feed } = useLoaderData<{
+    feed: Feed;
+    isConfirmed: boolean;
+    daysUntilNextIssue: number;
+  }>();
   const totalPosts = feed.posts.length;
   return (
     <>
       <div className="prose prose-lg mx-auto mt-12 dark:prose-invert px-4">
         <h1 className="text-center">{feed.title}</h1>
         <div dangerouslySetInnerHTML={{ __html: feed.description }} />
+        <Subscribe
+          renderContent={() => (
+            <h2 className="m-0 text-headings font-head font-bold text-2xl">
+              Hop right in 🏄‍♀️
+            </h2>
+          )}
+        />
         <h2>Checkout the Archive 👇</h2>
         <div className="text-lg mt-4">
           {feed.posts.map((post, index) => (
