@@ -38,7 +38,7 @@ export const headers: HeadersFunction = ({ loaderHeaders }) => {
 };
 
 export const meta: MetaFunction = ({ data: { post, id } }) => {
-  return { title: `#{id} ${post.title} | Hackletter` };
+  return { title: `#${id} - ${post.title} | Hackletter` };
 };
 
 export default function Index() {
