@@ -66,15 +66,15 @@ const Subscribe = ({ className, renderContent }: Props) => {
           </div>
         )}
         {["submitting", "loading"].includes(newsletter.state) && (
-          <p className="text-center w-full">Submitting 🙇‍♂️</p>
+          <p className="mt-8 text-center w-full">Submitting 🙇‍♂️</p>
         )}
         {newsletter.type === "done" && newsletter.data.ok && (
-          <p className="text-center w-full">
+          <p className="mt-8 text-center w-full">
             Thanks for subscribing, check your inbox to confirm! 🎉
           </p>
         )}
         {isConfirmed && (
-          <p className="text-center w-full">
+          <p className="mt-8 text-center w-full">
             You are in! Next issue will hit you inbox{" "}
             {daysUntilNextIssue > 0
               ? `in ${daysUntilNextIssue} day${
@@ -84,7 +84,7 @@ const Subscribe = ({ className, renderContent }: Props) => {
           </p>
         )}
         {newsletter.type === "done" && !newsletter.data?.ok && (
-          <p className="text-center w-full text-sm">
+          <p className="mt-8 text-center w-full text-sm">
             Something went wrong. Could you refresh page and retry? 🙊
           </p>
         )}
