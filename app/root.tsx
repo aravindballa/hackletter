@@ -17,7 +17,11 @@ import styles from "./tailwind.css";
 import { useEffect } from "react";
 
 export const meta: MetaFunction = () => {
-  return { title: "Hackletter | Weekly newsletter by Aravind Balla" };
+  return {
+    title: "Hackletter | Weekly newsletter by Aravind Balla",
+    description:
+      "Learn about building websites, productivity for developers and more.",
+  };
 };
 
 export const links: LinksFunction = () => {

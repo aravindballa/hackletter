@@ -1,4 +1,10 @@
-import { Link, useLoaderData, json, HeadersFunction } from "remix";
+import {
+  Link,
+  useLoaderData,
+  json,
+  HeadersFunction,
+  MetaFunction,
+} from "remix";
 import { format } from "date-fns";
 
 import { hackletterPosts } from "../../lib";
@@ -29,6 +35,10 @@ export const loader = async ({ params }: { params: Params }) => {
 
 export const headers: HeadersFunction = ({ loaderHeaders }) => {
   return loaderHeaders;
+};
+
+export const meta: MetaFunction = ({ data: { post, id } }) => {
+  return { title: `#{id} ${post.title} | Hackletter` };
 };
 
 export default function Index() {
