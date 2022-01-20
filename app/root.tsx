@@ -66,6 +66,11 @@ export default function App() {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
+        <script
+          defer
+          data-domain="hackletter.email"
+          src="https://plausible.io/js/plausible.js"
+        ></script>
       </head>
       <body>
         <Outlet />
