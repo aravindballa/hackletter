@@ -5,9 +5,8 @@ import {
   HeadersFunction,
   MetaFunction,
 } from "remix";
-import { format } from "date-fns";
 
-import { hackletterPosts } from "../../lib";
+import { hackletterPosts } from "../lib.server";
 import { NewsletterPost } from "../../types";
 import Footer from "../components/Footer";
 import Subscribe from "~/components/Subscribe";
@@ -17,11 +16,11 @@ type Params = {
 };
 
 export const loader = async ({ params }: { params: Params }) => {
-  const feed = await hackletterPosts();
-  if (!feed) return null;
+  const posts = await hackletterPosts();
+  if (!posts) return null;
 
-  const totalPosts = feed?.posts.length;
-  const post = feed?.posts[totalPosts - parseInt(params.id)];
+  const totalPosts = posts.length;
+  const post = posts[totalPosts - parseInt(params.id)];
 
   return json(
     { post, id: params.id },
@@ -41,7 +40,7 @@ export const meta: MetaFunction = ({ data: { post, id } }) => {
   return { title: `#${id} - ${post.title} | Hackletter` };
 };
 
-export default function Index() {
+export default function Post() {
   const { id, post } = useLoaderData<{ id: string; post: NewsletterPost }>();
   return (
     <>
@@ -53,9 +52,7 @@ export default function Index() {
           #{id} &middot; {post.title}
         </h1>
         {post.date && (
-          <p className="text-md italic text-purple-500">
-            Sent on {format(new Date(post.date), "MMMM do, yyy")}
-          </p>
+          <p className="text-md italic text-purple-500">Sent on {post.date}</p>
         )}
         <div dangerouslySetInnerHTML={{ __html: post.description }} />
         <Subscribe />

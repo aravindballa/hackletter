@@ -5,9 +5,16 @@ export type NewsletterPost = {
   date?: string;
 };
 
-export type Feed = {
-  title: string;
-  author: string;
-  description: string;
-  posts: NewsletterPost[];
+export type ButtondownEmail = {
+  body: string;
+  email_type: "public" | "private";
+  excluded_tags: string[];
+  external_url: string;
+  id: string;
+  included_tags: string[];
+  metadata: any;
+  publish_date: string;
+  secondary_id: number;
+  slug: string;
+  subject: string;
 };
