@@ -60,24 +60,34 @@ export default function Index() {
           )}
         />
         <h2>Checkout the Archive 👇</h2>
-        <div className="text-lg mt-4">
+        <div className="text-lg mt-4 grid grid-cols-1 md:grid-cols-2 gap-y-4">
           {posts.map((post, index) => (
-            <div key={index + 1} className="mb-4">
+            <div
+              key={index + 1}
+              className="hover:bg-gray-800 p-4 rounded-md group"
+            >
               <Link
-                className="hover:no-underline flex items-baseline"
+                className="no-underline flex flex-col"
                 to={`/${totalPosts - index}`}
                 prefetch="intent"
               >
-                <span className="text-sm text-gray-500 mr-4 break-words">
-                  #{totalPosts - index}
-                </span>
-                <div className="inline flex-1">
-                  <div className="inline">
-                    {post.title.replace(/\| Hackletter.*?$/, "")}
-                  </div>{" "}
-                  <span className="opacity-50">|</span>{" "}
-                  {post.date && <span className="text-sm">{post.date}</span>}
+                <h3 className="break-normal m-0">
+                  {post.title.replace(/\| Hackletter.*?$/, "")}
+                </h3>{" "}
+                <div className="flex text-gray-400">
+                  <span className="text-sm">#{totalPosts - index}</span>
+                  {post.date && (
+                    <span className="text-sm">&nbsp;· {post.date}</span>
+                  )}
                 </div>
+                <div
+                  className="break-normal bg-clip-text text-transparent bg-gradient-to-b from-gray-100 to-black group-hover:to-gray-100 prose-a:text-transparent prose-strong:text-transparent"
+                  dangerouslySetInnerHTML={{
+                    __html: post.description
+                      .replace(/<h1.*?<\/h1>/, "")
+                      .replace(/<\/p>[\s\S]*$/, "..</p>"),
+                  }}
+                />
               </Link>
             </div>
           ))}
