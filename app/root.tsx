@@ -71,9 +71,10 @@ export default function App() {
         <Meta />
         <Links />
         <script
+          async
           defer
-          data-domain="hackletter.email"
-          src="https://plausible.io/js/plausible.js"
+          data-website-id="66d7612c-6c78-4a43-bce9-7e73e22ec276"
+          src="https://analytics.balla.dev/umami.js"
         ></script>
       </head>
       <body>
